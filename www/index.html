@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Galaxy Chat</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/chat-enhancements.css">
+    <link rel="stylesheet" href="css/signup.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    
+<!-- Add this right after your body tag -->
+<div class="top-controls">
+    <button class="theme-toggle" aria-label="Toggle theme">
+        <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+    </button>
+
+    <button class="ai-chat-toggle" aria-label="Open AI Chat">
+        <img style= "width: 24px; height: 24px; stroke: currentColor;fill: none;" src="assets/images/astronaut.svg" class="ai-icon" alt="AI Chat Icon">
+    </button>
+</div>
+
+<!-- AI Chat Interface -->
+<div class="ai-chat-interface" style="display: none;">
+    <div class="ai-chat-container">
+        <div class="ai-chat-header">
+            <h3>Galaxy Ai</h3>
+            <button class="close-chat">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="ai-chat-messages">
+            <div class="message ai-message">
+                <div class="ai-avatar">
+                    <img style= "width: 24px; height: 24px; stroke: currentColor;fill: none;" src="assets/images/astronaut.svg" class="ai-icon" alt="AI Chat Icon">
+                </div>
+                <div class="message-content">
+                    <p>Hello! I'm your Galaxy AI assistant. How can I help you today? 🌟</p>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="ai-chat-input">
+            <input type="text" placeholder="Ask me anything about Galaxy Chat...">
+            <button class="send-message">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+</div>
+    
+    <!-- Animated Stars Background -->
+    <div class="stars"></div>
+
+    <!-- Enhanced Splash Screen -->
+    <div id="splash-screen" class="splash-screen">
+        <div class="splash-content">
+            <div class="galaxy-logo">
+                <img src="assets/images/astronaut.svg" alt="Profile Preview" id="profile-preview">
+            </div>
+            <h1>Galaxy Chat</h1>
+            <div class="loading-animation">
+                <div class="orbit">
+                    <div class="planet"></div>
+                </div>
+            </div>
+            <div class="splash-footer">
+                <p>Developed by Theodore</p>
+                <span class="version">v1.0.0</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Screen -->
+    <div id="login-screen" class="auth-screen" style="display: none;">
+        <div class="auth-container">
+            <div class="astronaut-icon">
+                <img src="assets/images/astronaut.svg" alt="Astronaut">
+            </div>
+            
+            <div class="auth-header">
+                <h2>Welcome Back</h2>
+                <p>Your cosmic journey continues here</p>
+            </div>
+            
+            <div class="social-auth">
+                <button class="social-btn google">
+                    <i class="fab fa-google"></i>
+                    <span>Google</span>
+                </button>
+                <button class="social-btn github">
+                    <i class="fab fa-github"></i>
+                    <span>GitHub</span>
+                </button>
+            </div>
+
+            <div class="divider">
+                <span>or</span>
+            </div>
+
+            <form id="login-form" class="auth-form">
+                <div class="floating-input-group">
+                    <input type="text" id="login-identifier" required>
+                    <label for="login-identifier">Username or Email</label>
+                    <i class="fas fa-user"></i>
+                </div>
+                
+                <div class="floating-input-group">
+                    <input type="password" id="login-password" required>
+                    <label for="login-password">Password</label>
+                    <i class="fas fa-lock"></i>
+                </div>
+
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input type="checkbox">
+                        <span>Remember me</span>
+                    </label>
+                    <a href="#" class="forgot-password">Forgot Password?</a>
+                </div>
+
+                <button type="submit" class="primary-btn">
+                    <span>Launch into Galaxy</span>
+                    <i class="fas fa-rocket"></i>
+                </button>
+            </form>
+
+            <p class="switch-auth">
+                New to Galaxy? <a href="#" id="show-signup">Create Account</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Signup Screen -->
+    <div id="signup-screen" class="auth-screen" style="display: none;">
+        <div class="auth-container">
+            <div class="astronaut-icon">
+                <img src="assets/images/astronaut.svg" alt="Astronaut">
+            </div>
+            
+            <div class="auth-header">
+                <h2>Join the Galaxy</h2>
+                <p>Begin your cosmic adventure</p>
+            </div>
+
+            <form id="signup-form" class="auth-form">         
+                <div class="floating-input-group">
+                    <input type="email" id="signup-email" required>
+                    <label for="signup-email">Email</label>
+                    <i class="fas fa-envelope"></i>
+                </div>
+
+                <div class="floating-input-group">
+                    <input type="password" id="signup-password" required>
+                    <label for="signup-password">Password</label>
+                    <i class="fas fa-lock"></i>
+                    <div class="password-strength">
+                        <div class="strength-bar"></div>
+                        <span class="strength-text">Password Strength</span>
+                    </div>
+                </div>
+
+                <div class="floating-input-group">
+                    <input type="password" id="signup-confirm-password" required>
+                    <label for="signup-confirm-password">Confirm Password</label>
+                    <i class="fas fa-lock"></i>
+                </div>
+
+                <button type="submit" class="primary-btn">
+                    <span>Create Your Galaxy</span>
+                    <i class="fas fa-rocket"></i>
+                </button>
+            </form>
+
+            <p class="switch-auth">
+                Already have an account? <a href="#" id="show-login">Login Here</a>
+            </p>
+        </div>
+    </div>
+    
+    <!-- setup profile -->
+    <div id="profileSetupScreen" class="auth-screen" style="display: none;">
+        <div class="auth-container">
+            <div class="astronaut-icon">
+                <img src="assets/images/astronaut.svg" alt="Astronaut">
+            </div>
+            
+            <div class="auth-header">
+                <h2>Setup Your Profile</h2>
+                <p>Begin your cosmic adventure</p>
+            </div>
+
+            <form id="signup-form1" class="auth-form">
+                <div class="profile-upload">
+                    <div class="profile-preview">
+                        <img src="assets/images/default.png" alt="Profile Preview" id="profile-preview">
+                        <div class="upload-overlay">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                    </div>
+                    <input type="file" id="profile-upload" accept="image/*" hidden>
+                </div> 
+                
+                <div class="floating-input-group">
+                    <input type="text" id="signup-displayname" required>
+                    <label for="signup-displayname">Display Name</label>
+                    <i class="fas fa-id-card"></i>
+                </div>
+
+                <div class="floating-input-group">
+                    <input type="text" id="signup-username" required>
+                    <label for="signup-username">Username</label>
+                    <i class="fas fa-user"></i>
+                </div>
+        
+                
+                <!-- Add this in the signup form, after the email input --> 
+<div class="phone-input-group">
+    <div class="country-select">
+        <div class="selected-country">
+            <img src="assets/images/flags/one-one/ad.svg" alt="Ethiopia" class="country-flag">
+            <span class="country-code">+251</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="country-dropdown">
+            <div class="country-search">
+                <input type="text" placeholder="Search country...">
+                <i class="fas fa-search"></i>
+            </div>
+            <div class="countries-list">
+                <!-- Countries will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+    <div class="floating-input-group phone-number">
+        <input type="tel" id="phone-number" required pattern="[0-9]*">
+        <label for="phone-number">Phone Number</label>
+    </div>
+</div>
+
+<button type="submit" class="primary-btn">
+                    <span>Create Your Galaxy</span>
+                    <i class="fas fa-rocket"></i>
+                </button>
+            </form>
+    </div>
+    </div>
+    
+    <!-- Phone Verification Screen -->
+<div id="verification-screen" class="auth-screen" style="display: none;">
+    <div class="auth-container">
+        <div class="astronaut-icon verification-astronaut">
+            <img src="assets/images/astronaut.svg" alt="Astronaut with message">
+        </div>
+        
+        <div class="auth-header">
+            <h2>Verify Your Number</h2>
+            <p>We've sent a verification code to <span class="user-phone">+251 XX XXX XXXX</span></p>
+        </div>
+
+        <form id="verification-form" class="auth-form">
+            <div class="otp-input-group">
+                <input type="text" maxlength="1" pattern="[0-9]" inputmode="numeric">
+                <input type="text" maxlength="1" pattern="[0-9]" inputmode="numeric">
+                <input type="text" maxlength="1" pattern="[0-9]" inputmode="numeric">
+                <input type="text" maxlength="1" pattern="[0-9]" inputmode="numeric">
+                <input type="text" maxlength="1" pattern="[0-9]" inputmode="numeric">
+                <input type="text" maxlength="1" pattern="[0-9]" inputmode="numeric">
+            </div>
+
+            <div class="verification-options">
+                <div class="countdown">Code expires in: <span id="countdown-timer">02:00</span></div>
+                <button type="button" class="resend-code" disabled>
+                    Resend Code
+                    <div class="cooldown-ring"></div>
+                </button>
+            </div>
+
+            <button type="submit" class="primary-btn">
+                <span>Verify & Continue</span>
+                <i class="fas fa-arrow-right"></i>
+            </button>
+        </form>
+
+        <p class="verification-help">
+            Didn't receive the code? <a href="#" id="change-number">Change Number</a>
+        </p>
+        
+    </div>
+</div>
+
+<!-- Add this after the verification screen -->
+<div id="forgot-password-screen" class="auth-screen" style="display: none;">
+    <div class="auth-container">
+        <div class="astronaut-icon floating">
+            <img src="assets/images/astronaut.svg" alt="Astronaut Reset">
+        </div>
+
+        <div class="auth-header">
+            <h2>Reset Password</h2>
+            <p>Lost in space? Let's recover your access</p>
+        </div>
+
+        <!-- Email Step -->
+        <form id="forgot-password-form" class="auth-form">
+            <div class="step-indicator">
+                <div class="step active">
+                    <span class="step-number">1</span>
+                    <span class="step-title">Verify Email</span>
+                </div>
+                <div class="step-line"></div>
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <span class="step-title">New Password</span>
+                </div>
+            </div>
+
+            <!-- Step 1: Email Verification -->
+            <div class="form-step" id="step-email">
+                <div class="floating-input-group">
+                    <input type="email" id="reset-email" required>
+                    <label for="reset-email">Email Address</label>
+                    <i class="fas fa-envelope"></i>
+                </div>
+
+                <button type="submit" class="primary-btn">
+                    <span>Send Reset Link</span>
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+
+            <!-- Step 2: New Password (Initially Hidden) -->
+            <div class="form-step hidden" id="step-password">
+                <div class="floating-input-group">
+                    <input type="password" id="new-password" required>
+                    <label for="new-password">New Password</label>
+                    <i class="fas fa-lock"></i>
+                    <div class="password-strength">
+                        <div class="strength-bar"></div>
+                        <span class="strength-text">Password Strength</span>
+                    </div>
+                </div>
+
+                <div class="floating-input-group">
+                    <input type="password" id="confirm-new-password" required>
+                    <label for="confirm-new-password">Confirm Password</label>
+                    <i class="fas fa-lock"></i>
+                </div>
+
+                <button type="submit" class="primary-btn">
+                    <span>Reset Password</span>
+                    <i class="fas fa-rocket"></i>
+                </button>
+            </div>
+        </form>
+
+        <p class="switch-auth">
+            Remember your password? <a href="#" id="back-to-login">Back to Login</a>
+        </p>
+    </div>
+</div>
+
+    <script src="js/app.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/verification.js"></script>
+    <script src="js/validation.js"></script>
+    <script src="js/countries.js"></script>
+    <script src="js/forgot-password.js"></script>
+    <script src="js/services/gemini-services.js"></script>
+    <script src="js/signup.js"></script>
+    <script src="js/profile-upload.js"></script>
+</body>
+</html>

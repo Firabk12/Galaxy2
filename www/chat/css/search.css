@@ -1,0 +1,191 @@
+/* Search Container */
+.search__container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: var(--body-color);
+}
+
+/* Search Header */
+.search__header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--container-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.back-button {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    color: var(--text-color);
+    cursor: pointer;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.back-button:hover {
+    color: var(--first-color);
+}
+
+/* Search Input */
+.search__input-wrapper {
+    flex: 1;
+    position: relative;
+}
+
+.search__input {
+    width: 100%;
+    padding: 0.75rem 0;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid var(--border-color);
+    color: var(--title-color);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.search__input:focus {
+    outline: none;
+    border-bottom-color: var(--first-color);
+}
+
+/* Search Results */
+.search__results {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+}
+
+/* Rest of your existing search CSS remains the same... */
+
+.search__initial-state {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-color);
+    opacity: 0.7;
+    padding: 2rem;
+}
+
+.search__initial-state i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+/* Loading State */
+.search__loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.search__loading-spinner {
+    width: 2rem;
+    height: 2rem;
+    border: 3px solid var(--border-color);
+    border-top-color: var(--first-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1rem;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Search Results Styling */
+.search__section {
+    margin-bottom: 2rem;
+}
+
+.search__section h3 {
+    color: var(--text-color);
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+    padding-left: 0.5rem;
+    text-transform: uppercase;
+}
+
+.search__results-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.search__result-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.search__result-item:hover {
+    background: var(--container-color);
+}
+
+.search__result-item img,
+.group__avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.group__avatar {
+    background: var(--first-color);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+}
+
+.result__info h4 {
+    color: var(--title-color);
+    font-size: 0.975rem;
+    margin-bottom: 0.25rem;
+}
+
+.result__info p {
+    color: var(--text-color);
+    font-size: 0.875rem;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.search__container {
+    animation: fadeIn 0.3s ease;
+}
+
+/* Add these new animations */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.search__header,
+.search__container {
+    animation: slideIn 0.3s ease;
+}

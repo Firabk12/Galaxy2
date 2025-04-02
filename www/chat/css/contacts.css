@@ -1,0 +1,130 @@
+/* Contacts specific styles */
+.contacts__list {
+    width: 95%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    overflow-y: auto;
+}
+
+.contact-divider {
+    font-size: 1rem;
+    font-weight: var(--font-semi-bold);
+    color: var(--first-color);
+    padding: 1rem 0 0.5rem 0;
+    position: sticky;
+    top: 0;
+    background-color: var(--body-color);
+    z-index: 1;
+}
+
+.contact-wrapper {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s;
+}
+
+.contact-wrapper:hover {
+    background-color: var(--shadow-color);
+    cursor: pointer;
+}
+
+.contact__photo__wrapper {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    margin-right: 1rem;
+}
+
+.contact__photo__wrapper > div:first-child {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.contact__photo__wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.online-indicator {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 12px;
+    height: 12px;
+    background-color: #22c55e;
+    border: 2px solid var(--body-color);
+    border-radius: 50%;
+}
+
+.contact__info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.contact__name {
+    font-size: 1rem;
+    font-weight: var(--font-semi-bold);
+    color: var(--title-color);
+}
+
+.contact__status {
+    font-size: var(--smaller-font-size);
+    color: var(--text-color);
+}
+
+.contact__actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.action-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-color);
+    transition: all 0.3s;
+}
+
+.action-btn:hover {
+    background-color: var(--first-color);
+    color: var(--body-color);
+}
+
+/* Contacts type navigation */
+.contacts__type {
+    width: 95%;
+    height: 5%;
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+.contacts__type button {
+    padding-bottom: 0.5rem;
+    color: var(--text-color);
+    transition: all 0.3s;
+}
+
+.contacts__type button.active {
+    color: var(--first-color);
+    border-bottom: 2px solid var(--first-color);
+}
+
+.contacts__type button:hover {
+    color: var(--first-color);
+    cursor: pointer;
+}

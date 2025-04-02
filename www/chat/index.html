@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+   <html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+      <!--=============== REMIXICONS ===============-->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+      <link href="https://twemoji.maxcdn.com/v/latest/twemoji.css" rel="stylesheet">
+
+      <!--=============== CSS ===============-->
+      <link rel="stylesheet" href="css/styles.css">
+      <link rel="stylesheet" href="css/chats.css">
+      <link rel="stylesheet" href="css/contacts.css">
+      <link rel="stylesheet" href="css/mutuals.css">
+      <link rel="stylesheet" href="css/saved.css">
+      <link rel="stylesheet" href="css/profile.css">
+      <link rel="stylesheet" href="css/settings.css">
+      <link rel="stylesheet" href="css/galaxy-ai.css">
+      <link rel="stylesheet" href="css/search.css">
+      <link rel="stylesheet" href="css/mediaPlayer.css">
+      <link rel="stylesheet" href="css/searchFilter.css">
+      <link rel="stylesheet" href="css/privateChat.css">
+      <link rel="stylesheet" href="css/userProfile.css">
+      
+      
+      <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>
+      
+      <title>GalaxyChat</title>
+   </head>
+   <body>
+      <!--=============== HEADER ===============-->
+      <header class="header" id="header">
+         <div class="header__container">
+             <div class="logo__wrapper">
+             <button class="header__toggle" id="header-toggle">
+               <i class="ri-menu-line"></i>
+            </button>
+            
+            <a href="#" class="header__logo">              
+               <span>GalaxyChat</span>
+            </a>                
+            </div>       
+            <div>               
+                <i class="fas fa-search"></i>
+            </div>
+         </div>
+      </header>
+
+      <!--=============== SIDEBAR ===============-->
+      <nav class="sidebar" id="sidebar">
+         <div class="sidebar__container">
+            <div class="sidebar__user">
+               <div class="profile-wrapper">
+               <div class="sidebar__img">
+                  <img src="img/default.jpg" alt="image">
+               </div>
+   
+               <div class="sidebar__info">
+                  <h3>Theodore</h3>
+                  <span>@FirafisBekele</span>
+               </div>
+               </div>
+               <div class="profile-icons">
+                    <i class="ri-moon-clear-fill" id="theme-button"></i>  
+               </div>
+            </div>            
+            
+            <div class="sidebar__content">
+               <div>
+                  <h3 class="sidebar__title">Manage</h3>
+
+                  <div class="sidebar__list">
+                      <a href="#" class="sidebar__link active-link" data-page="chats">
+                        <i class="ri-chat-1-line"></i>
+                        <span>Chats</span>
+                     </a> 
+                                          
+                     <a href="#" class="sidebar__link" data-page="contacts">
+                        <i class="ri-contacts-line"></i> 
+                        <span>Contacts</span>
+                     </a>
+
+                     <a href="#" class="sidebar__link" data-page="mutuals">
+                        <i class="ri-user-shared-line"></i> 
+                        <span>Mutuals</span>
+                     </a>
+
+                     <a href="#" class="sidebar__link" data-page="saved">
+                        <i class="ri-bookmark-line"></i>   
+                        <span>Saved Messages</span>
+                     </a>
+                  </div>
+               </div>
+
+               <div>
+                  <h3 class="sidebar__title">Settings</h3>
+                  <div class="sidebar__list">
+                     <a href="#" class="sidebar__link" data-page="profile">
+                        <i class="ri-user-line"></i>
+                        <span>Profile</span>
+                     </a>
+                     
+                     <a href="#" class="sidebar__link" data-page="settings">
+                        <i class="ri-settings-3-fill"></i>
+                        <span>Settings</span>
+                     </a>
+                  </div>
+               </div>
+            </div>
+
+            <div class="sidebar__actions" >              
+               <button class="sidebar__link">
+                  <i class="fas fa-robot"></i>
+                  <span>Galaxy Ai</span>
+               </button>
+            </div>
+         </div>
+      </nav>
+
+      <!--=============== MAIN ===============-->
+      <main class="main-container" id="main">
+          <div class="main__wrapper">
+              <div class="dummy__sidebar"></div>
+              <div class="chat__interface">
+                  <!-- Content will be loaded dynamically -->
+              </div>
+          </div>
+      </main>
+
+      <!--=============== MAIN JS ===============-->
+      <script src="js/main.js"></script>
+      <script src="js/settings.js"></script>
+      <script type="module" src="js/navigation.js"></script>  
+      <script src="js/galaxy-ai.js"></script>
+      <script src="js/search.js"></script>
+      <script src="js/mediaPlayer.js"></script>
+      <script type="module" src="mediaEditor.js"></script>
+<script type="module" src="privateChat.js"></script>
+   </body>
+</html>
