@@ -1,7 +1,7 @@
 // Update the chatSections.all to include suggestions
 import { createFilterDropdown, initializeSearch } from './searchFilter.js';
 import { privateChatUI } from './privateChat.js';
-
+import { groupChatUI } from './groupChat.js';
 
 const chatSections = {
     all: `
@@ -161,56 +161,75 @@ const chatSections = {
             </div>
         </div>
     `,
-    groups: `
-        <div class="chats__list">
-            <div class="message-wrapper">
-                <div class="message__photo__wrapper">
-                    <div>
-                        <img src="img/group1.jpg" alt="">
-                        <div class="status-indicator"></div>
-                    </div>
-                </div>
-                <div class="message__displayName">
-                    <div class="message__header">
-                        <p class="chat__name">Project Team</p>
-                        <span class="message__time">4:20</span>
-                    </div>
-                    <div class="message__preview">
-                        <p>Meeting at 5PM today...</p>
-                        <div class="message__badges">
-                            <span class="unread__count">5</span>
-                        </div>
-                    </div>
+groups: `
+    <div class="chats__list">
+        <div class="message-wrapper" data-chat-type="group">
+            <div class="message__photo__wrapper">
+                <div>
+                    <img src="img/group1.jpg" alt="">
+                    <div class="status-indicator"></div>
                 </div>
             </div>
-
-            <!-- Suggestions Section -->
-            <div class="section__divider">
-                <p>Suggested Groups</p>
-            </div>
-
-            <div class="message-wrapper suggestion">
-                <div class="message__photo__wrapper">
-                    <div>
-                        <img src="img/group2.jpg" alt="">
-                    </div>
+            <div class="message__displayName">
+                <div class="message__header">
+                    <p class="chat__name">Project Team</p>
+                    <span class="message__time">4:20</span>
                 </div>
-                <div class="message__displayName">
-                    <div class="message__header">
-                        <p class="chat__name">UI/UX Community</p>
+                <div class="message__preview">
+                    <p>Meeting at 5PM today...</p>
+                    <div class="message__badges">
+                        <span class="unread__count">5</span>
                     </div>
-                    <div class="message__preview">
-                        <p class="username">1.2k members</p>
-                    </div>
-                </div>
-                <div class="suggestion__actions">
-                    <button class="add-contact">
-                        <i class="ri-group-add-line"></i>
-                    </button>
                 </div>
             </div>
         </div>
-    `,
+
+        <!-- Add another test group -->
+        <div class="message-wrapper" data-chat-type="group">
+            <div class="message__photo__wrapper">
+                <div>
+                    <img src="img/group2.jpg" alt="">
+                    <div class="status-indicator"></div>
+                </div>
+            </div>
+            <div class="message__displayName">
+                <div class="message__header">
+                    <p class="chat__name">UI/UX Team</p>
+                    <span class="message__time">4:15</span>
+                </div>
+                <div class="message__preview">
+                    <p>New design system updates...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Suggestions Section -->
+        <div class="section__divider">
+            <p>Suggested Groups</p>
+        </div>
+
+        <div class="message-wrapper suggestion">
+            <div class="message__photo__wrapper">
+                <div>
+                    <img src="img/group2.jpg" alt="">
+                </div>
+            </div>
+            <div class="message__displayName">
+                <div class="message__header">
+                    <p class="chat__name">UI/UX Community</p>
+                </div>
+                <div class="message__preview">
+                    <p class="username">1.2k members</p>
+                </div>
+            </div>
+            <div class="suggestion__actions">
+                <button class="add-contact">
+                    <i class="ri-group-add-line"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+`,
     archive: `
         <div class="chats__list">
             <div class="message-wrapper">
@@ -266,35 +285,78 @@ function getChatPageContent() {
 }
 
 function initializeChatClicks() {
+    // Remove any existing event listeners first
+    const existingChatItems = document.querySelectorAll('.message-wrapper');
+    existingChatItems.forEach(chat => {
+        chat.replaceWith(chat.cloneNode(true));
+    });
+
+    // Add new event listeners
     const chatItems = document.querySelectorAll('.message-wrapper');
     chatItems.forEach(chat => {
+        if (chat.classList.contains('suggestion')) return; // Skip suggestion items
+
         chat.addEventListener('click', () => {
-            // Get elements with null checks
             const nameElement = chat.querySelector('.chat__name');
-            const avatarElement = chat.querySelector('.chat__avatar img');
+            const avatarElement = chat.querySelector('img');
             const statusElement = chat.querySelector('.status-indicator');
-
-            // Only proceed if we have at least the name
+            
+            // Check which type of chat section we're in
+            const activeSection = document.querySelector('.chat__type button.active');
+            const isGroupSection = activeSection?.getAttribute('data-chat-type') === 'groups';
+            
             if (nameElement) {
-                const userName = nameElement.textContent;
-                const userAvatar = avatarElement ? avatarElement.src : 'img/default-avatar.jpg';
-                const userStatus = statusElement?.classList.contains('online') ? 'online' : 'offline';
-                const currentTime = '2025-04-01 05:28:46'; // Using your current timestamp
-
-                // Open private chat with user data
-                openPrivateChat({
-                    user: {
-                        name: userName,
-                        avatar: userAvatar,
-                        status: userStatus,
-                        username: `@${userName.toLowerCase().replace(/\s+/g, '_')}`,
-                        lastSeen: userStatus === 'offline' ? currentTime : null
-                    },
-                    messages: [] // You can add initial messages here if needed
-                });
+                if (isGroupSection) {                   
+                    openGroupChat({
+                        name: nameElement.textContent,
+                        avatar: avatarElement?.src || 'img/group-default.jpg',
+                    });
+                } else {
+                    openPrivateChat({
+                        user: {
+                            name: nameElement.textContent,
+                            avatar: avatarElement?.src || 'img/default-avatar.jpg',
+                            status: statusElement?.classList.contains('online') ? 'online' : 'offline',
+                            username: `@${nameElement.textContent.toLowerCase().replace(/\s+/g, '_')}`,
+                            lastSeen: null
+                        }
+                    });
+                }
             }
         });
     });
+}
+
+function openGroupChat(groupData) {
+    // Update active chat data
+    groupChatUI.setActiveChatData({
+        group: {
+            ...groupChatUI.activeChatData.group,
+            name: groupData.name,
+            avatar: groupData.avatar
+        }
+    });
+
+    // Add transition class to main container
+    document.body.classList.add('opening-chat');
+
+    // Create and append chat container
+    const chatContainer = document.createElement('div');
+    chatContainer.className = 'group-chat-container';
+    chatContainer.innerHTML = groupChatUI.getGroupChatInterface();
+
+    // Add slide-in animation class
+    chatContainer.classList.add('slide-in');
+    
+    document.body.appendChild(chatContainer);
+
+    // Initialize group chat functionality
+    groupChatUI.initializeChat();
+    
+    const messagesContainer = chatContainer.querySelector('.messages__container');
+    if (messagesContainer) {
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
 }
 
 // Function to open private chat
@@ -496,6 +558,10 @@ function handleChatTypeNavigation() {
                 // Update content with fade animation
                 setTimeout(() => {
                     chatContent.innerHTML = chatSections[chatType];
+                    
+                    // Re-initialize chat clicks after content update
+                    initializeChatClicks();
+                    
                     setTimeout(() => {
                         chatContent.style.opacity = '1';
                     }, 50);
@@ -506,7 +572,7 @@ function handleChatTypeNavigation() {
     
     createFilterDropdown('chats');
     initializeSearch();
-    initializeChatClicks();
+    initializeChatClicks(); // Initial initialization
 }
 
 // Export the functions and data

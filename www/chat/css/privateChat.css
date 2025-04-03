@@ -474,13 +474,13 @@ body.opening-chat {
 }
 
 .message--received {
-    justify-content: flex-start;
-    display: flex;
+    justify-content: flex-start !important;
+    display: flex !important;
 }
 
 .message--sent {
-    display: flex;
-    justify-content: flex-end;
+    display: flex !important;
+    justify-content: flex-end !important;
 }
 
 /* Avatar for received messages */
@@ -1594,3 +1594,6 @@ body.opening-chat {
         height: 50px;
     }
 }
+
+
+
